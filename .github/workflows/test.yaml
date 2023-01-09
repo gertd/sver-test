@@ -17,7 +17,7 @@ jobs:
         fetch-depth: 0
 
     - name: sver-cur
-      uses: ./.github/actions/sver-action
+      uses: ./.github/actions/sver-cur
       id: "sver-cur"
       with:
         docker_image: "gertd/sver-test"
@@ -26,7 +26,7 @@ jobs:
         docker_password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: sver-new
-      uses: ./.github/actions/sver-action
+      uses: ./.github/actions/sver-new
       id: "sver-new"
       with:
         docker_image: "gertd/sver-test"
