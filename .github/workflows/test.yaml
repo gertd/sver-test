@@ -27,7 +27,7 @@ jobs:
 
     - name: sver-new
       uses: ./.github/actions/sver-action
-      id: "sver-cur"
+      id: "sver-new"
       with:
         docker_image: "gertd/sver-test"
         docker_registry: "ghcr.io"
