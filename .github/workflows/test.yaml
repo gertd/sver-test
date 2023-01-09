@@ -47,7 +47,7 @@ jobs:
         while read -r tag; do
           tags="$tags ${{ env.REPO }}:$tag"
         done < <(echo "${{ steps.sver-cur.outputs.version }}")
-        echo ::set-output name=target_tags_cur::$tags
+        echo ::set-output name=tags::$tags
 
     - name: calc-tags-new
       id: "tags-new"
