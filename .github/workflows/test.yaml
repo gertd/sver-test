@@ -53,16 +53,16 @@ jobs:
           tags="$tags ${{ steps.config.outputs.repo }}:$tag"
         done < <(echo "${{ steps.sver-new.outputs.version }}")
 
-        echo "target_tags_new<<EOF" >> $GITHUB_OUTPUT
+        echo "tags<<EOF" >> $GITHUB_OUTPUT
         echo "$tags" >> $GITHUB_OUTPUT
         echo "EOF" >> $GITHUB_OUTPUT
 
     - name: show-tags-cur
       id: "show-tags-cur"
       run: |
-        echo "version: ${{ steps.target_tags_cur.outputs.version }}"
+        echo "tags: ${{ steps.tags-cur.outputs.tags }}"
 
     - name: show-tags-new
       id: "show-tags-new"
       run: |
-        echo "version: ${{ steps.target_tags_new.outputs.version }}"
+        echo "version: ${{ steps.tags-new.outputs.tags }}"
