@@ -52,7 +52,7 @@ jobs:
     - name: calc-tags-new
       id: "tags-new"
       run: |
-        echo "version: ${{ steps.sver-new.outputs.version }}"
+        echo "version: ${{ steps.calc-tags-new.outputs.version }}"
 
         while read -r tag; do
           tags="$tags ${{ env.REPO }}:$tag"
@@ -65,9 +65,9 @@ jobs:
     - name: show-tags-cur
       id: "show-tags-cur"
       run: |
-        echo "tags: ${{ steps.tags-cur.outputs.tags }}"
+        echo "tags-cur: ${{ steps.tags-cur.outputs.tags }}"
 
     - name: show-tags-new
       id: "show-tags-new"
       run: |
-        echo "version: ${{ steps.tags-new.outputs.tags }}"
+        echo "tags-new: ${{ steps.tags-new.outputs.tags }}"
