@@ -1,0 +1,46 @@
+name: test
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+    - '*'
+
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    name: test
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: sver-cur
+      uses: ./.github/actions/sver-action
+      id: "sver-cur"
+      with:
+        docker_image: "gertd/sver-test"
+        docker_registry: "ghcr.io"
+        docker_username: "gertd"
+        docker_password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: sver-new
+      uses: ./.github/actions/sver-action
+      id: "sver-cur"
+      with:
+        docker_image: "gertd/sver-test"
+        docker_registry: "ghcr.io"
+        docker_username: "gertd"
+        docker_password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: calc-tags-cur
+      id: "tags"
+      run: |
+        echo "version: ${{ steps.sver-cur.outputs.version }}"
+
+    - name: calc-tags-new
+      id: "tags"
+      run: |
+        echo "version: ${{ steps.sver-new.outputs.version }}"
+

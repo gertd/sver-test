@@ -1,0 +1,41 @@
+name: "sver semantic version calculator"
+description: "Calculates semantic versions based on repository history."
+author: "aserto.com"
+branding:
+  icon: tag
+  color: green
+inputs:
+  docker_image:
+    description: "Calculate the version tags to use for a docker image."
+    required: false
+    default: ""
+  docker_registry:
+    description: "Registry server to connect to."
+    required: false
+    default: "https://registry-1.docker.io/"
+  docker_username:
+    description: "Username for the registry."
+    required: false
+    default: ""
+  docker_password:
+    description: "Password for the registry."
+    required: false
+    default: ""
+  next:
+    description: |
+      Whether to output the next version of the repository.
+      Possible values are 'major', 'minor' or 'patch'.
+      Ignored if `docker_image` is set.
+    required: false
+    default: ""
+  pre_release:
+    description: "Adds a pre release identifier to the version."
+    required: false
+    default: ""
+outputs:
+  version:
+    description: Calculated version of the repository.
+runs:
+  using: docker
+  image: docker://ghcr.io/aserto-dev/sver:1
+  entrypoint: /app/gh-action-entrypoint.sh
