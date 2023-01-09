@@ -35,12 +35,12 @@ jobs:
         docker_password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: calc-tags-cur
-      id: "tags"
+      id: "tags-cur"
       run: |
         echo "version: ${{ steps.sver-cur.outputs.version }}"
 
     - name: calc-tags-new
-      id: "tags"
+      id: "tags-new"
       run: |
         echo "version: ${{ steps.sver-new.outputs.version }}"
 
